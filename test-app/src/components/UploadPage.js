@@ -4,8 +4,10 @@ import { Header } from 'semantic-ui-react';
 import XLSX from 'xlsx';
 import Checkbx from "../components/checkbox";
 import '../style.css'; 
+import { Link } from 'react-router-dom';
 
-const UploadPage = () => {
+
+export const UploadPage = () => {
 
 const [filename, setFileName] = useState([])
 const [filesheet, setFileSheet] = useState({})
@@ -106,6 +108,7 @@ function createFileUrl(datatobackend) {
     urls[url] = sheetNames;
   }
   setParametersWithUrl(urls)
+  // props.setProp({data: parameterswithfileurl})
   console.log("urlsssss",urls)
   Promise.all(urls).then((result) => {
     // console.log("result",result);
@@ -132,13 +135,15 @@ const handleCheckboxChange = (newValues) => {
   setSelectedValues(newValues);
 };
 
+function openNewTab() {
+  window.open("http://localhost:3000/parameter");
+}
 
-
-console.log("urlspara",parameterswithfileurl)
+console.log("upload")
 
 return (
   <>
-    <h1 className="ui header" style={{ "text-align":"center", "backgroundColor": "white"}}>UPLOAD FILES HERE
+    <h1 className="ui header" style={{ textAlign:"center", "backgroundColor": "white"}}>UPLOAD FILES HERE
     <div id="inputFile">
          <input  type="file" onChange={inputFileOnChange}  multiple/>
      </div>
@@ -157,9 +162,17 @@ return (
        <button onClick={() => createFileUrl(selectedValues)}>Upload
        </button> 
     </div>
+
+
+    <div  style={{display: "flex", justifyContent:"center", paddingTop: '20px'}}>
+      {/* <Link to = "/parameter"> */}
+       <button onClick={openNewTab}>Parameter Page
+       </button> 
+       {/* </Link> */}
+    </div>
   </>
    );
   
 }
-export default UploadPage;
+// export default UploadPage;
 

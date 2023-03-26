@@ -1,14 +1,17 @@
 import React from "react";
+import XLSX from 'xlsx';
+import { ChangeEvent, useState,useEffect } from 'react';
 
 
 
-const Parameter = () =>  {
-
+export const Parameter = () => {
+    console.log("para")
     return(
 
         <div>
-            Hello
+            hello
         </div>
     )
 }
-export default Parameter;
+
+// export default Parameter;
